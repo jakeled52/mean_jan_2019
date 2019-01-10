@@ -11,7 +11,7 @@ var express    = require('express'),
 app.use(express.static(path.join(__dirname, 'static')));
 
 // Tell express where our views are
-app.set(path.join('views', __dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 // Now lets set the view engine itself so that express knows that we are using
 // ejs as opposed to another templating engine like jade
