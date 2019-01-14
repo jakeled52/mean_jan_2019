@@ -2,8 +2,9 @@ const express    = require('express'),
       app        = express(),
       path       = require('path'),
       bodyParser = require('body-parser'),
-      mongoose   = require('./config/mongoose'),
       port       = 8000;
+
+require('./config/mongoose');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'static')));

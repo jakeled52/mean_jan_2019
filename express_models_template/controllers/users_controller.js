@@ -3,7 +3,7 @@ const User = require('../models/user');
 module.exports = {
 
   users: function(req, res){
-    users = User.find({}, function(err, users) {
+    User.find({}, function(err, users) {
       if (err) {
         res.redirect('/users')
       }
