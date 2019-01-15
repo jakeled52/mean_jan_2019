@@ -4,7 +4,7 @@ const Comment = require('../models/comment');
 module.exports = {
 
   create: function(req, res){
-    Message.findById(req.params.cid, function(err, msg) {
+    Message.findById(req.params.mid, function(err, msg) {
       if (err) {
         for(var key in err.errors){
             req.flash('create_comment', err.errors[key].message);
