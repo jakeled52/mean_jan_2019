@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type ='text/javascript'>
+            $(document).ready(function() {
+                var socket = io.connect();
+                $('#push').click(function(e){
+                    e.preventDefault();
+                    socket.emit('click_button', {message: "Sending button click to server from client"});
+                })
+                socket.on('update_count', function(data){
+                    var h1 = document.getElementById("add");
+                    h1.innerHTML = 'The button has been pressed ' + data.count + " time(s)."
+                })
+                $('#reset_button').click(function(e){
+                    e.preventDefault();
+                    socket.emit('click_reset_button', {message: "Sending reset click to server from client"});
+                })
+                
+                socket.on('reset_count', function(data){
+                    var h1 = document.getElementById("add");
+                    h1.innerHTML = 'The button has been pressed ' + data.count + " time(s)." 
+                })
+            });
+        </script>
+
+    </head>
+    <body>
+         	<h1 id="add">The button has been pressed 0 time(s).</h1>
+        	<div>
+        		<h3>Push the button to update the count...</h3>
+        		<button id="push">Push the epic button</button>
+        	</div>
+
+        	<button id='reset_button'>Reset count</button> 
+    </body>
+</html>

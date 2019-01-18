@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>dog Dashboard</title>
+      </head>
+    <body>
+        <h1 class="text-center">Welcome to dog Dashboard...</h1>
+        <div class="container">
+            <table class="table-striped col-10">
+                     <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+              
+                    <% for (var i = 0; i < dogs.length; i++) { %>
+                    <tr>
+                        <td><a href="/dogs/<%= dogs[i]._id %>"><%= dogs[i].name %></a></td>
+                        <td><%= dogs[i].description %></td>
+                        <td><%= dogs[i].createdAt.toDateString() %></td>
+                        <td><a href="/dogs/edit/<%= dogs[i]._id%>">Edit</a>, 
+                        <form action="/dogs/destroy/<%= dogs[i]._id%>" method='post'>
+                            <input type='submit' value='Remove'>
+                        </form>
+                        </td>
+                    </tr>
+                    <% } %>
+            </table>
+            <a href="/dogs/new">Add a new dog!</a>
+        </div>
+    </body>
+</html>

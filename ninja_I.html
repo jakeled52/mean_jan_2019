@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ninja I</title>
+</head>
+	<script>
+		function ninja(name) {
+
+			var ninja = {};
+
+			ninja.name = name;
+			ninja.health = 100;
+			var speed = 3;
+			var strength = 3;
+
+			ninja.sayName = function() {
+				console.log("Hello my name is " + name);
+				return this
+			}
+
+			ninja.showStats = function(){
+				console.log("Name: " + name + ", Health: " + ninja.health + ", Speed: " + speed + ", Strength: " + strength);
+				return this
+			}
+
+			ninja.drinkSake = function(){
+				ninja.health += 10
+				return this
+			}
+			ninja.punch = function(target){
+				if(target.health >= 5){
+					target.health -= 5;
+					console.log(this.name + " punched " + target.name + " for 5 damage.")
+					return this;
+				}
+				else if(target.health <= 5 && target.health > 0){
+					target.health = 0;
+					console.log(this.name + " defeated "+ target.name);
+					return this;
+				}
+				else{
+					console.log(target.name + " has already been defeated!");
+					return this;
+				}
+			}
+			ninja.kick = function(target){
+				
+				if(target.health >= (strength * 15)){
+					target.health -= (strength * 15);
+					console.log(this.name + " kicked " + target.name + " for " + (strength *15) + " damage.");
+					return this;
+				}
+				else if(target.health <= (strength * 15) && target.health > 0){
+					target.health = 0;
+					console.log(this.name + " defeated " + target.name);
+					return this;
+				}
+				else{
+					console.log(target.name + " has already been defeated.");
+					return this;
+				}
+			}
+			return ninja;
+		}
+
+		var jake = ninja("Jake");
+		var mark = ninja("Mark");
+		jake.sayName();
+		mark.punch(jake);
+		jake.showStats().drinkSake().showStats().drinkSake().showStats();
+		mark.kick(jake).kick(jake).kick(jake).kick(jake);
+		jake.showStats();
+	</script>
+<body>
+	<h1>See console to view Ninja_I output</h1>
+</body>
+</html>

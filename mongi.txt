@@ -1,0 +1,5 @@
+db.users.updateMany({}, {$set: {interests: {@each: ['gold', 'silver']
+
+db.users.updateMany({},{$rename: {interests: "activities"}})
+
+db.users.updateMany({},{$

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h2>This is the quotes page...</h2>
+        <% for (var i = 0; i < quotes.length; i++) { %>
+            <p> <%= quotes[i].name %> - <%= quotes[i].quote %>, <%= quotes[i].createdAt %></p> 
+        <% } %>
+
+         <a href="/">Back</a>
+    </body>
+</html>

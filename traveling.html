@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Traveling</title>
+    <script>
+            var tigger = {character: "Tiger",
+              greet: function(){
+                console.log("The wonderful thing about tiggers is tiggers are wonderful things");
+              }}
+            var piglet = {character: "Piglet",
+              greet: function(){
+                console.log("Hi there i am piglet");
+              }}
+            var pooh = {character:"winnie the pooh",
+              greet: function(){
+                console.log("Oh brother");
+              }}
+            var bees = {character: "bees",
+              greet: function(){
+                console.log("Bzzzz Bzzz Bzz");
+              }}
+            var owl = {character:"owl",
+              greet: function(){
+                console.log("Hooo Hooo");
+              }}
+            var christopher = {character: "christopher Robin",
+              greet: function(){
+                console.log("Hi there im christopher.");
+              }}
+            var rabbit = {character: "Rabbit",
+              greet: function(){
+                console.log("Hi. Got any carrots?");
+              }}
+            var gopher = {character: "Gopher",
+              greet: function(){
+                console.log("Hi. welcome to my den!");
+              }}
+            var kanga = {character: "Kanga",
+              greet: function(){
+                console.log("bouncey bouncey bounce bounce");
+              }}
+            var eeyore = {character: "Eeyore",
+              greet: function(){
+                console.log("Today sucks.");
+              }}
+            var heffalumps = {character: "Heffalumps",
+              greet:function(){
+                console.log("Im Heffalumps");
+              }}
+            var locationArr = [tigger,piglet,pooh,owl,christopher,rabbit,gopher,kanga,eeyore,heffalumps]
+            tigger.north = pooh
+            piglet.north = owl
+            piglet.east = pooh
+            pooh.west = piglet
+            pooh.north = christopher
+            pooh.east = bees
+            pooh.south = tigger
+            bees.north = rabbit
+            bees.west = pooh
+            owl.south = piglet
+            owl.east = christopher
+            christopher.north = kanga
+            christopher.east = rabbit
+            christopher.south = pooh
+            christopher.west = owl
+            rabbit.west = christopher
+            rabbit.east = gopher
+            rabbit.south = bees
+            gopher.west = rabbit
+            kanga.south = christopher
+            kanga.north = eeyore
+            eeyore.south = kanga
+            eeyore.east = heffalumps
+            heffalumps.west = eeyore
+            var honey = false;
+
+            var player = {
+              location: tigger
+            }
+            function pickUp(){
+              if (player.location == bees){
+                honey = true;
+                console.log("picked up honey!")
+              }
+              else
+                console.log("no honey here!")
+            }
+            var destination = 0
+            function mission(){
+              var randNum = Math.floor((Math.random() * 10) + 1);
+              destination = locationArr[randNum];
+              console.log("please deliver honey to " + destination.character);
+            }
+            mission();
+            function drop(){
+              if(honey==true && player.location == destination){
+                honey = false;
+                console.log(destination.character + ", thanks you for the honey!")
+              }
+              else if(honey==true && player.location != destination){
+                console.log(player.location.character + " does not need honey. "+destination.character+" needs the honey.")
+              }
+              else
+                console.log("You have no honey to drop")
+            }
+            function move(dir){
+              if(dir=="north"){
+                if(typeof player.location.north != 'undefined'){
+                  player.location = player.location.north;
+                  player.location.greet()
+                  console.log("You are now at " + player.location.character + "'s house");
+                }
+                else{
+                  console.log("You may not go that way.")
+                }
+              }
+              if(dir=="east"){
+                if(typeof player.location.east != 'undefined'){
+                  player.location = player.location.east;
+                  player.location.greet();
+                  console.log("You are now at " + player.location.character + "'s house");
+                }
+                else{
+                  console.log("You may not go that way.")
+                }
+              }
+              if(dir=="south"){
+                if(typeof player.location.south != 'undefined'){
+                  player.location = player.location.south;
+                  player.location.greet();
+                  console.log("You are now at " + player.location.character + "'s house");
+                }
+                else{
+                  console.log("You may not go that way.")
+                }
+              }
+              if(dir=="west"){
+                if(typeof player.location.west != 'undefined'){
+                  player.location = player.location.west;
+                  player.location.greet();
+                  console.log("You are now at " + player.location.character + "'s house");
+                }
+                else{
+                  console.log("You may not go that way.")
+                }
+              }
+            }
+    </script>
+</head>
+<body>
+    <h1>Inspect console to play the winnie the pooh game</h1>
+</body>
+</html>

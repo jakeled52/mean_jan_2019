@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Message Board</title>
+  </head>
+  <body>
+    <div>
+      <h1>Dojo Message Board!!!</h1>
+        <% if(messages.create_message) { %>
+           <% for (var message of messages.create_message) { %>
+            <h3 style="color: red;"><%= message %></h3>
+           <% } %>
+       <% } %>
+        <form action="/messages" method="POST">
+
+          <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+          </div>
+
+          <div>
+            <label for="content">Message:</label>
+            <textarea id="content" name="content"></textarea>
+          </div>
+
+          <button type="submit">Submit Message</button>
+        </form>
+
+        <ul>
+          <% for (var msg of all_messages) { %>
+            <li>Name: <%= msg.name %></li>
+            <li>Message: <%= msg.content %></li>
+            <% for (var comment of msg.comments) { %>
+              <ul>
+                <li><small>Name: <%= comment.name %></small></li>
+                <li><small>Comment: <%= comment.content %></small></li>
+              </ul>
+            <% } %>
+            <% if(messages.create_comment) { %>
+               <% for (var msg2 of messages.create_comment) { %>
+                <h3><%= msg2 %></h3>
+               <% } %>
+           <% } %>
+            <form action="/comments/<%= msg._id %>" method="POST">
+              <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your name">
+              </div>
+              <div>
+                <label for="content">Comment:</label>
+                <textarea id="content" name="content"></textarea>
+              </div>
+              <button type="submit">Submit Comment</button>
+            </form>
+          <% } %>
+        </ul>
+
+      </div>
+  </body>
+</html>

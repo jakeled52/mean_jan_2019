@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Coin Change</title>
+    <script>
+        function CoinChange(total){
+            var dollars = 0;
+            var quarters = 0;
+            var dimes = 0;
+            var nickels = 0;
+            var pennies = 0;
+            var string = "{";
+            dollars = Math.floor(total/100);
+            var remainder = total % 100;
+            quarters = Math.floor(remainder / 25);
+            remainder %= 25;
+            dimes = Math.floor(remainder/10)
+            remainder %= 10;
+            nickels = Math.floor(remainder / 5);
+            remainder %= 5;
+            pennies = remainder;
+
+            if (dollars) 
+                string += "dollars: " + dollars + ", ";
+            if (quarters)
+                string += "quarters: " + quarters + ", ";
+            if (dimes)
+                string += "dimes: " + dimes + ", ";
+            if (nickels)
+                string += "nickels: " + nickels + ", ";
+            if (pennies)
+                string += "pennies: " + pennies + ", ";
+            string += "}"
+            console.log(string);
+        }
+        CoinChange(499);
+    </script>
+</head>
+<body>
+    <h1>Inspect console to see coinChange function output</h1>
+</body>
+</html>

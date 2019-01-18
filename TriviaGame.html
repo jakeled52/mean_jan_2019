@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <style>
+    	#container{
+    		width: 610px;
+    		margin: 0px auto;
+    	}
+    	#h1{
+    		width:200px;
+    		height:300px;
+    		background-color:red;
+    		display: inline-block;
+    	}
+    	#h1a1, #h1a2, #h1a3, #h1a4{}
+    	#h2{
+    		width:200px;
+    		height:300px;
+    		background-color: darkred;
+    		display: inline-block;
+    	}
+    	#h2a1, #h2a2, #h2a3, #h2a4{}
+    	#h3{
+    		width:200px;
+    		height:300px;
+    		background-color: black;
+    		color:pink;
+    		display: inline-block;
+    	}
+    	#h3a1, #h3a2, #h3a3, #h3a4{}
+    	#f1{
+    		width:200px;
+    		height:300px;
+    		background-color: green;
+    		display: inline-block;
+    	}
+    	#f1a1, #f1a2, #f1a3, #f1a4{}
+    	#f2{
+    		width:200px;
+    		height:300px;
+    		background-color: darkgreen;
+    		display: inline-block;
+    	}
+    	#f2a1, #f2a2, #f2a3, #f2a4{}
+ 		#f3{
+    		width:200px;
+    		height:300px;
+    		background-color: black;
+    		color: lightgreen;
+    		display: inline-block;
+    	}
+    	#f3a1, #f3a2, #f3a3, #f3a4{}
+	</style>
+</head>
+<body>
+	<div id='header'>
+	</div>
+	<div id='container'>
+		<div id="h1">
+			<p>history question - easy</p>
+			<div id='h1q'></div>
+			<div id='h1a1'></div>
+			<div id='h1a2'></div>
+			<div id='h1a3'></div>
+			<div id='h1a4'></div>
+		</div>
+		<div id="h2">
+			<p>history question - medium</p>
+			<div id='h2q'></div>
+			<div id='h2a1'></div>
+			<div id='h2a2'></div>
+			<div id='h2a3'></div>
+			<div id='h2a4'></div>
+		</div>
+		<div id="h3">
+			<p>history question - hard</p>
+			<div id='h3q'></div>
+			<div id='h3a1'></div>
+			<div id='h3a2'></div>
+			<div id='h3a3'></div>
+			<div id='h3a4'></div>
+		</div>
+
+		<div id="f1">
+			<p>Film question - easy</p>
+			<div id='f1q'></div>
+			<div id='f1a1'></div>
+			<div id='f1a2'></div>
+			<div id='f1a3'></div>
+			<div id='f1a4'></div>
+		</div>
+		<div id="f2">
+			<p>Film question - medium</p>
+			<div id='f2q'></div>
+			<div id='f2a1'></div>
+			<div id='f2a2'></div>
+			<div id='f2a3'></div>
+			<div id='f2a4'></div>
+		</div>
+		<div id="f3">
+			<p>Film question - hard</p>
+			<div id='f3q'></div>
+			<div id='f3a1'></div>
+			<div id='f3a2'></div>
+			<div id='f3a3'></div>
+			<div id='f3a4'></div>
+		</div>
+	</div>
+</body>
+<script>
+	$('#h1').click(function(){
+	
+		$.get("https://opentdb.com/api.php?amount=10&category=23&difficulty=easy&type=multiple", displayQuestion);
+	
+		function displayQuestion(data){
+			
+			$('#h1q').html(data.results[0].question);
+			$('#h1a1').html(data.results[0].correct_answer);
+			$('#h1a2').html(data.results[0].incorrect_answers[0]);
+			$('#h1a3').html(data.results[0].incorrect_answers[1]);
+			$('#h1a4').html(data.results[0].incorrect_answers[2]);
+			
+			$('#h1a1').click(function(){
+				$('#header').html("- Correct Answer - ");
+				$("#h1").remove();
+				$('#h1a1').remove();
+				$('#h1a2').remove();
+				$('#h1a3').remove();
+				$('#h1a4').remove();
+			});
+			$('#h1a2, #h1a3, #h1a4').click(function(){
+				$('#header').append("- Inorrect choice. The correct answer was " + data.results[0].correct_answer + " -");
+				$("#h1").remove();
+				$('#h1a1').remove();
+				$('#h1a2').remove();
+				$('#h1a3').remove();
+				$('#h1a4').remove();
+			})
+			console.log(data);
+		}
+	});
+	$('#h2').click(function(){
+	
+		$.get("https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple", displayQuestion);
+	
+		function displayQuestion(data){
+			
+			$('#h2q').html(data.results[0].question);
+			$('#h2a1').html(data.results[0].incorrect_answers[1]);
+			$('#h2a2').html(data.results[0].incorrect_answers[0]);
+			$('#h2a3').html(data.results[0].correct_answer);
+			$('#h2a4').html(data.results[0].incorrect_answers[2]);
+			
+			$('#h2a3').click(function(){
+				$('#header').append("- Correct Answer - ");
+				$("#h2").remove();
+				$('#h2a1').remove();
+				$('#h2a2').remove();
+				$('#h2a3').remove();
+				$('#h2a4').remove();
+			});
+			$('#h2a2, #h2a1, #h2a4').click(function(){
+				$('#header').html("- Inorrect choice. The correct answer was " + data.results[0].correct_answer + " -");
+				$("#h2").remove();
+				$('#h2a1').remove();
+				$('#h2a2').remove();
+				$('#h2a3').remove();
+				$('#h2a4').remove();
+			})
+			console.log(data);
+		}
+	});
+	$('#h3').click(function(){
+	
+		$.get("https://opentdb.com/api.php?amount=10&category=23&difficulty=hard", displayQuestion);
+	
+		function displayQuestion(data){
+			
+			$('#h3q').html(data.results[0].question);
+			$('#h3a1').html(data.results[0].incorrect_answers[1]);
+			$('#h3a2').html(data.results[0].incorrect_answers[0]);
+			$('#h3a3').html(data.results[0].incorrect_answers[2]);
+			$('#h3a4').html(data.results[0].correct_answer);
+			
+			$('#h3a4').click(function(){
+				$('#header').append("- Correct Answer - ");
+				$("#h3").remove();
+				$('#h3a1').remove();
+				$('#h3a2').remove();
+				$('#h3a3').remove();
+				$('#h3a4').remove();
+			});
+			$('#h3a2, #h3a3, #h3a1').click(function(){
+				$('#header').html("- Inorrect choice. The correct answer was " + data.results[0].correct_answer + " -");
+				$("#h3").remove();
+				$('#h3a1').remove();
+				$('#h3a2').remove();
+				$('#h3a3').remove();
+				$('#h3a4').remove();
+			})
+			console.log(data);
+		}
+	});
+$('#f1').click(function(){
+	
+		$.get("https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple", displayQuestion);
+	
+		function displayQuestion(data){
+			
+			$('#f1q').html(data.results[0].question);
+			$('#f1a1').html(data.results[0].incorrect_answers[1]);
+			$('#f1a2').html(data.results[0].incorrect_answers[0]);
+			$('#f1a3').html(data.results[0].incorrect_answers[2]);
+			$('#f1a4').html(data.results[0].correct_answer);
+			
+			$('#f1a4').click(function(){
+				$('#header').append("- Correct Answer - ");
+				$("#f1").remove();
+				$('#f1a1').remove();
+				$('#f1a2').remove();
+				$('#f1a3').remove();
+				$('#f1a4').remove();
+			});
+			$('#f1a2, #f1a3, #f1a1').click(function(){
+				$('#header').html("- Inorrect choice. The correct answer was " + data.results[0].correct_answer + " -");
+				$("#f1").remove();
+				$('#f1a1').remove();
+				$('#f1a2').remove();
+				$('#f1a3').remove();
+				$('#f1a4').remove();
+			})
+			console.log(data);
+		}
+	});
+$('#f2').click(function(){
+	
+		$.get("https://opentdb.com/api.php?amount=10&category=11&difficulty=medium&type=multiple", displayQuestion);
+	
+		function displayQuestion(data){
+			
+			$('#f2q').html(data.results[0].question);
+			$('#f2a1').html(data.results[0].incorrect_answers[0]);
+			$('#f2a2').html(data.results[0].correct_answer)
+			$('#f2a3').html(data.results[0].incorrect_answers[1]);
+			$('#f2a4').html(data.results[0].incorrect_answers[2]);
+			
+			$('#f2a2').click(function(){
+				$('#header').append("- Correct Answer - ");
+				$("#f2").remove();
+				$('#f2a1').remove();
+				$('#f2a2').remove();
+				$('#f2a3').remove();
+				$('#f2a4').remove();
+			});
+			$('#f2a4, #f2a3, #f2a1').click(function(){
+				$('#header').html("- Inorrect choice. The correct answer was " + data.results[0].correct_answer + " -");
+				$("#f2").remove();
+				$('#f2a1').remove();
+				$('#f2a2').remove();
+				$('#f2a3').remove();
+				$('#f2a4').remove();
+			})
+			console.log(data);
+		}
+	});
+$('#f3').click(function(){
+	
+		$.get("https://opentdb.com/api.php?amount=10&category=11&difficulty=hard&type=multiple", displayQuestion);
+	
+		function displayQuestion(data){
+			
+			$('#f3q').html(data.results[0].question);
+			$('#f3a1').html(data.results[0].correct_answer);
+			$('#f3a2').html(data.results[0].incorrect_answers[0]);
+			$('#f3a3').html(data.results[0].incorrect_answers[1]);
+			$('#f3a4').html(data.results[0].incorrect_answers[2]);
+			
+			$('#f3a1').click(function(){
+				$('#header').append("- Correct Answer - ");
+				$("#f3").remove();
+				$('#f3a1').remove();
+				$('#f3a2').remove();
+				$('#f3a3').remove();
+				$('#f3a4').remove();
+			});
+			$('#f3a4, #f3a3, #f3a2').click(function(){
+				$('#header').html("- Inorrect choice. The correct answer was " + data.results[0].correct_answer + " -");
+				$("#f3").remove();
+				$('#f3a1').remove();
+				$('#f3a2').remove();
+				$('#f3a3').remove();
+				$('#f3a4').remove();
+			})
+			console.log(data);
+		}
+	});
+</script>
+</html>
+

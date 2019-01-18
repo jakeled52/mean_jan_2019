@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>dog Dashboard</title>
+           </head>
+    <body>
+        <div class="container">
+            <h2>Create a new dog here!</h2>   
+             <% if(typeof(errors) != 'undefined' ) { %>
+                <% for (var x in errors) { %>
+                <h3><%= errors[x].message %></h3>
+                <% } %>
+            <% } %>
+            <form action='/dogs' method='post'>
+                <label for='name'>dog Name: </label>
+                <input type='text' name='name' id='name'>
+
+                <label for='description'>dog Description: </label>
+                <textarea name='description', id='description'></textarea>
+
+                <input type='submit' value='Add dog!'>
+            </form> 
+        </div>
+    </body>
+</html>
