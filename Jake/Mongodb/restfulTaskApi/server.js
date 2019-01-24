@@ -9,5 +9,5 @@ app.use(bodyParser.json());
 
 require('./config/routes.js')(app)
 app.listen(8000, function() {
-	console.log('listening on 80')
+	console.log('listening on 8000')
 });

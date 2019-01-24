@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http'
+import { observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,17 +14,32 @@ export class AppComponent implements OnInit{
   show_taskD: any;
   edited_task: any;
   deleted_task: any;
+  show: boolean;
+  editOne: boolean;
+  showOne: boolean;
+  newTask = {};
+  specific_task: {};
   title = 'Tasks';
 
   constructor(private _httpService: HttpService){
   }
   ngOnInit(){
-    this.createTask({title:"SkyDive", desc: "Jump out of an airplane"});
+    // this.createTask({title:"SkyDive", desc: "Jump out of an airplane"});
+    // this.createTask({title:"Eat food" , desc:"keep from starving"});
+    // this.createTask({title:"Play videogames",desc:"Stay entertained"});
+    // this.createTask({title:"Drink water", desc:"Stay hydrated"});
+    // this.createTask({title:"Sky Dive", desc:"Jump out of a freakin plane!"});
     this.allTasks();
-    this.showTask("5c473aef3d318c3c28bc1d38");
-    this.editTask("5c473aef3d318c3c28bc1d38",{title:"Eat",desc:"Food"});
-    this.deleteTask("5c4734e65159b820a45518c1");
-    this.lukeSkywalker();
+    //this.lukeSkywalker();
+    this.newTask = { title: "", desc: ""}
+  }
+  onSubmit(){
+    let observeable = this._httpService.createTask(this.newTask);
+    observeable.subscribe(data => {
+      console.log("Got data from post back", data);
+      this.newTask = {title:"", desc: ""}
+      this.allTasks();
+    })
   }
   createTask(params2){
     this._httpService.createTask(params2).subscribe((data: any) =>{
@@ -51,6 +67,19 @@ export class AppComponent implements OnInit{
     this._httpService.deleteTask(tid).subscribe((data: any) => {
       this.deleted_task = data;
     })
+  }
+  onShowClick(){
+    this.show=true;
+  }
+  getOneTask(id){
+    this._httpService.showTask(id).subscribe((data:any)=>{
+      this.specific_task = data.data[0];
+    })
+  }
+  onClick(event){
+    this.showOne = true;
+    this.getOneTask(event['target']['value']);
+    console.log('button clicked', event['target']['value']);
   }
   lukeSkywalker(){
     this._httpService.lukeSkywalker().subscribe((data:any) =>{

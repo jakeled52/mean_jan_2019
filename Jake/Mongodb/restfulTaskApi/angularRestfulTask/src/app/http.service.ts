@@ -32,4 +32,7 @@ export class HttpService {
   xwing(url){
     return this._http.get(url);
   }
+  getTask_id(id){
+    return this._http.get(`/tasks/${id}`);
+  }
 }
