@@ -1,0 +1,27 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Gold: {{ Gold }}!
+  </h1>
+  <div>
+    <p>Farm 2 - 5 Gold:</p>
+    <button id='FarmG' (click)='onFarmClick()'>Check Farm For Gold</button>
+  </div>
+  <div>
+    <p>Cave 5 - 10 Gold:</p>
+    <button id='CaveG' (click)='onCaveClick()'>Check Cave For Gold</button>
+  </div>
+  <div>
+    <p>House 7 - 15 Gold:</p>
+    <button id='HouseG' (click)='onHouseClick()'>Check House For Gold</button>
+  </div>
+  <div>
+    <p>Casino Earn Or Lose 100 Gold:</p>
+    <button id='CasinoG' (click)='onCasinoClick()'>Gamble At Casino</button>
+  </div>
+
+ <h3>Adventure Log!!!</h3>
+<ul>
+  <li *ngFor='let action of activities'>{{action}}</li>
+</ul>
+</div>
