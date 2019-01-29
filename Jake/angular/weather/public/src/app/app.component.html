@@ -1,0 +1,25 @@
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+<ul>
+  <li [routerLink]="['/seattle']">
+    Seattle
+  </li>
+  <li [routerLink]="['/san jose']">
+    San Jose
+  </li>
+  <li [routerLink]="['/burbank']">
+    Burbank
+  </li>
+  <li [routerLink]="['/dallas']">
+    Dallas
+  </li>
+  <li [routerLink]="['/washington']">
+    Washington
+  </li>
+  <li  [routerLink]="['/chicago']" id="last">
+    Chicago
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

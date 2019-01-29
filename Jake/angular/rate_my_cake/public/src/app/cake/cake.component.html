@@ -1,0 +1,11 @@
+<h1>
+  Baker Name: {{cakeToShow.baker}}
+</h1>
+<img [src]="cakeToShow.img_url" style='height:300px;' style='width:300px;'>
+<h3>Reviews</h3>
+<ul>
+  <li *ngFor='let review of cakeToShow.reviews'>
+    {{review}}
+  </li>
+</ul>
+<h4>Average rating: {{avg}}</h4>

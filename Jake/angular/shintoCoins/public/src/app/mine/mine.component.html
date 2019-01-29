@@ -1,0 +1,9 @@
+<h1>
+  mine ShintoCoins!
+</h1>
+<h3>Earn shintoCoins by solving the problems below.</h3>
+<h4>What is {{var1}} + {{var2}}?</h4>
+<form (submit)="mineCoins()">
+  <input type='number' name='userAnswer' [(ngModel)]="userAnswer">
+  <button type='submit'>Mine Coin</button>
+</form>

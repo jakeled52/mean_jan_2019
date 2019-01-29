@@ -1,0 +1,43 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>{{title}}!</h1>
+  <div id="tasks">
+    <button id="show" (click)="onShowClick()">Show Tasks!</button>
+     <div *ngIf="show">
+        <ul>
+          <li *ngFor="let task of all_task">Task info: {{task.title}} <button (click)="onClick($event)" [value]="task._id">Show Info</button>
+          <button (click)='onEdit(task._id)'>Edit</button>
+          <button (click)='onDelete(task._id)'>Delete</button></li>
+          
+        </ul>
+     </div>
+     <div *ngIf='showOne' id='showOne'>
+        <p>{{specific_task.title}}</p>
+        <p>{{specific_task.desc}}</p>
+        
+     </div>
+  </div>
+
+
+  <div *ngIf="editOne">
+    <form (submit)="onEditTask(editTaskT._id)">
+      <label for ="title">Edit - Title</label>
+      <input type = 'text' name='title' [(ngModel)]='editTaskT.title'/>
+      
+      <label for='Description'>Description</label>
+      <input type='text' name='Description' [(ngModel)]='editTaskT.desc'/>
+     
+      <button type='submit'>update</button>
+    </form>
+  </div>
+
+
+  <form (submit)="onSubmit()">
+    <p>{{newTask | json}}</p>
+    <label>Create Task - Task title:</label>
+      <input type='text' name='newTask.title' [(ngModel)]='newTask.title'/>
+        <label>Description title:</label>
+      <input type='text' name='newTask.desc' [(ngModel)]='newTask.desc'/>
+    <input type='submit' value='create task'/>
+  </form>
+</div>

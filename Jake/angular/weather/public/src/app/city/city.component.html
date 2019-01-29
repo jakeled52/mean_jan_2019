@@ -1,0 +1,9 @@
+<h1>{{data.name}}</h1>
+<div>
+  <p>Humidity: {{data.main.humidity}}%</p>
+  <p>Temperature (Current): {{data.main.temp}}</p>
+  <p>Temperature (High): {{data.main.temp_max}}</p>
+  <p>Temperature (Low): {{data.main.temp_min}}</p>
+  <p>Status: {{data.weather[0].description}}</p>
+</div>
+<img src="{{url}}" alt="{{data.name}}" style='height:300px' style='width:300px'>

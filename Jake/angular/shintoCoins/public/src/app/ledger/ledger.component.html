@@ -1,0 +1,7 @@
+<h1>Ledger</h1>
+<h3>View of shintoCoin transactions</h3>
+<ul>
+  <li *ngFor="let transaction of ledgerInfo">
+    Action:{{transaction.action}} Amount:{{transaction.amount}} Value:{{transaction.value}}
+  </li>
+</ul>
